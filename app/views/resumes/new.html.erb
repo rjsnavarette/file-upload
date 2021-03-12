@@ -1,36 +1,23 @@
-<div class="container">
-  <% if !@resume.errors.empty? %>
-    <div>
-
-      <ul>
-        <% @resume.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %></ul>
-    </div>
-  <% end %>
-</div>
-
-<div class="container">
-  <% if !@resume.errors.empty? %>
-    <div>
-
-      <ul>
-        <% @resume.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>      </ul>
-
-    </div>
-  <% end %>
-
+<% if !@resume.errors.empty? %>
   <div>
-    <%= form_for @resume, html: {multipart: true} do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <br><br>
-      <%= f.label :attachment %>
-      <%= f.file_field :attachment %>
-      <br>
-      <%= f.submit "Save" %>
-    <% end %>
+
+    <ul>
+      <% @resume.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>      </ul>
+
   </div>
+<% end %>
+<div>
+  <%= form_for @resume, html: {multipart: true}, class:"mb-3" do |f| %>
+    <%= f.label "Filename", class:"form-label" %>
+    <%= f.text_field :name, class:"form-control" %>
+    <br>
+    <%= f.label :attachment, class:"form-label" %>
+    <%= f.file_field :attachment, class:"form-control" %>
+    <br>
+    <%= f.submit "Save", class:"btn btn-success" %>
+    <%= link_to "Back", root_path, class:"btn btn-primary" %>
+  <% end %>
+
 </div>

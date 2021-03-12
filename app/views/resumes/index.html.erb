@@ -1,20 +1,12 @@
-<div class="container">
 <% if !flash[:notice].blank? %>
    <div>
       <%= flash[:notice] %>
    </div>
 <% end %>
-
-<br>
-
-<%= link_to "New Resume", new_resume_path %>
-<br>
-<br>
-
-<table border="3">
-   <thead>
+<table class="table table-striped table-hover table-bordered">
+   <thead class="table-light">
       <tr>
-         <th>Candidate Name</th>
+         <th>Filename</th>
          <th>Download Link</th>
          <th>Action</th>
       </tr>
@@ -25,12 +17,13 @@
 
          <tr>
             <td><%= resume.name %></td>
-            <td><%= link_to "Download", resume.attachment_url %></td>
-            <td><%= link_to "Delete",  resume, method: :delete, confirm: "Are you sure you want to delete #{resume.name}?" %></td>
+            <td><%= link_to "Download", resume.attachment_url, target: :_blank %></td>
+            <td><%= link_to "Delete",  resume, method: :delete, data: { confirm: "Are you sure you want to delete #{resume.name}?" } %></td>
          </tr>
 
       <% end %>
    </tbody>
 
 </table>
-</div>
+
+<%= link_to "Add new FILE", new_resume_path, class:"btn btn-success" %>
