@@ -25,10 +25,6 @@ class ResumesController < ApplicationController
       redirect_to resumes_path, notice:  "Successfully deleted."
    end
 
-   def download_file
-     client = Resume.find(params[:id])
-   end
-
    private
       def resume_params
       params.require(:resume).permit(:name, :attachment)
